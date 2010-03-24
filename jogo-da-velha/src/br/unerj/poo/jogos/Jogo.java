@@ -24,7 +24,7 @@ public class Jogo {
 		
 		if (jogadaEhValida) {
 			tabuleiro.setCasa(x, y, new Peca(vez));
-		}r
+		}
 		
 		return jogadaEhValida;
 	}
