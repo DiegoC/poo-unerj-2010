@@ -4,6 +4,7 @@ public class Tabuleiro {
 	Casa[][] casas;
 	
 	public Tabuleiro() {
+                // tabuleiro com 3x3 casas
 		casas = new Casa[3][3];
 		preencheTabuleiroComCasasVazias();
 	}
