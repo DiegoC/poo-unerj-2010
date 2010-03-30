@@ -18,6 +18,14 @@ public class Peca {
 	}
 	public Jogador getJogador() {
 		return jogador;
+		
 	}
+	
+	public boolean equals(Object o) {
+		return 
+			(o != null) && (o instanceof Peca) &&
+			(this.jogador.equals( ( (Peca)o).jogador));	
+	}
+	
 	
 }

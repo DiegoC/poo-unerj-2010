@@ -14,10 +14,14 @@ public class Tabuleiro {
 			}
 		}
 	}
-	public Casa getCasa(int x, int y) {
-		return casas[x][y];
+	public Peca getPeca(int x, int y) {
+		if (casas[x][y] != null) {
+			return casas[x][y].getPeca();
+		} else {
+			return null;
+		}
 	}
-	public void setCasa(int x, int y, Peca peca) {
+	public void setPeca(int x, int y, Peca peca) {
 		casas[x][y].setPeca(peca);
 	}
 
