@@ -4,7 +4,8 @@ public class Jogo {
 	private Jogador[] jogadores;
 	private Tabuleiro tabuleiro;
 	private Dado[] dado;
-	private Jogador vez;
+	private Jogador vez;  
+	private Jogador vencedor;
 	
 	public Jogo() {
 		tabuleiro = new Tabuleiro();
@@ -23,18 +24,12 @@ public class Jogo {
 			tabuleiro.getPeca(x, y) == null; 
 		
 		if (jogadaEhValida) {
-<<<<<<< HEAD:jogo-da-velha/src/br/unerj/poo/jogos/Jogo.java
-			tabuleiro.setCasa(x, y, new Peca(vez));
-=======
 			tabuleiro.setPeca(x, y, new Peca(vez));
-			passaVezParaProximoJogador();  // <-------
->>>>>>> master:jogo-da-velha/src/br/unerj/poo/jogos/Jogo.java
+			passaVezParaProximoJogador();  
 		}
 		
 		return jogadaEhValida;
 	}
-    // |
-	// V
 	private void passaVezParaProximoJogador() {
 		vez = vez == jogadores[0]? jogadores[1] : jogadores[0];
 	}
@@ -64,6 +59,9 @@ public class Jogo {
 			tabuleiro.getPeca(i, 0) != null &&
 			tabuleiro.getPeca(i, 0).equals(tabuleiro.getPeca(i, 1)) &&
 			tabuleiro.getPeca(i, 0).equals(tabuleiro.getPeca(i, 2));
+		if (fechou) {
+			vencedor = tabuleiro.getPeca(i, 0).getJogador();
+		}
 		return fechou;
 	}
 
@@ -72,6 +70,10 @@ public class Jogo {
 			tabuleiro.getPeca(0, i) != null &&
 			tabuleiro.getPeca(0, i).equals(tabuleiro.getPeca(1, i)) &&
 			tabuleiro.getPeca(0, i).equals(tabuleiro.getPeca(2, i));
+			
+		if (fechou) {
+			vencedor = tabuleiro.getPeca(0, i).getJogador();
+		}
 		return fechou;
 	}
 
@@ -79,7 +81,11 @@ public class Jogo {
 		boolean fechou = 
 			tabuleiro.getPeca(0, 0) != null &&
 			tabuleiro.getPeca(0, 0) == tabuleiro.getPeca(1, 1) &&
-			tabuleiro.getPeca(0, 0) == tabuleiro.getPeca(2, 2);
+			tabuleiro.getPeca(0, 0) == tabuleiro.getPeca(2, 2);      
+
+		if (fechou) {
+			vencedor = tabuleiro.getPeca(0, 0).getJogador();
+		}   		
 		return fechou;
 	}
 
@@ -88,6 +94,19 @@ public class Jogo {
 			tabuleiro.getPeca(2, 0) != null  &&
 			tabuleiro.getPeca(2, 0) == tabuleiro.getPeca(1, 1) &&
 			tabuleiro.getPeca(2, 0) == tabuleiro.getPeca(0, 2);
+			
+		if (fechou) {
+			vencedor = tabuleiro.getPeca(2, 0).getJogador();
+		}
+			
 		return fechou;
+	} 
+	
+	public Peca getPeca(int x, int y) {
+		return tabuleiro.getPeca(x, y);
+	}    
+	
+	public Jogador getVencedor() {
+		return vencedor;		
 	}
 }

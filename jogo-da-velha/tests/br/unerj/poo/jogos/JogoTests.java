@@ -23,19 +23,40 @@ public class JogoTests {
 		jogo = null;
 		j1 = null;
 		j2 = null;
-	}
+	}            
+
 	@Test
-	public void testVeSeJogaUmDeCadaVez() {
+	public void testTabuleiroDeveEstarVazioNoInicioDoJogo() {
+		Assert.assertNull(jogo.getPeca(0, 0));
+		Assert.assertNull(jogo.getPeca(0, 1));
+		Assert.assertNull(jogo.getPeca(0, 2));
+		Assert.assertNull(jogo.getPeca(1, 0));
+		Assert.assertNull(jogo.getPeca(1, 1));
+		Assert.assertNull(jogo.getPeca(1, 2));
+		Assert.assertNull(jogo.getPeca(2, 0));
+		Assert.assertNull(jogo.getPeca(2, 1));
+		Assert.assertNull(jogo.getPeca(2, 2));
+	}
+
+	@Test
+	public void testJogaUmDeCadaVez() {
 		Assert.assertEquals(j1, jogo.getProximoJogador());
 		Assert.assertTrue(jogo.jogar(0, 0));
 		Assert.assertEquals(j2, jogo.getProximoJogador());
-		Assert.assertFalse(jogo.jogar(0, 0));
 		Assert.assertTrue(jogo.jogar(1, 1));
 		Assert.assertEquals(j1, jogo.getProximoJogador());
+	}   
+	
+	@Test
+	public void testNaoPodeJogarEmUmaCasaOcupada() {
+		Assert.assertNull(jogo.getPeca(0,0));
+		Assert.assertTrue(jogo.jogar(0,0));
+		Assert.assertNotNull(jogo.getPeca(0,0));
+		Assert.assertFalse(jogo.jogar(0,0));
 	}
 	
 	@Test
-	public void testVeSeAlguemGanhou() {
+	public void testGanhaQuemAlinhar3Pecas() {
 		jogo.jogar(0,0);
 		Assert.assertFalse(jogo.alguemGanhou());
 		
@@ -50,9 +71,8 @@ public class JogoTests {
 		
 		jogo.jogar(0,2);
 		Assert.assertTrue(jogo.alguemGanhou());
-		
-//		Assert.assertEquals(j1, jogo.getVencedor())
-
+				
+		Assert.assertEquals(j1, jogo.getVencedor());
 	}
 
 }
