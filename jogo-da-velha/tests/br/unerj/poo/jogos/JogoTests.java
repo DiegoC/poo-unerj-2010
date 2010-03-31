@@ -14,7 +14,7 @@ public class JogoTests {
 
 	@Before
 	public void setUp() throws Exception {
-		jogo = new Jogo();
+		jogo = new JogoDaVelha();
 		j1 = jogo.getJogadores(0);
 		j2 = jogo.getJogadores(1);
 	}
@@ -24,19 +24,6 @@ public class JogoTests {
 		j1 = null;
 		j2 = null;
 	}            
-
-	@Test
-	public void testTabuleiroDeveEstarVazioNoInicioDoJogo() {
-		Assert.assertNull(jogo.getPeca(0, 0));
-		Assert.assertNull(jogo.getPeca(0, 1));
-		Assert.assertNull(jogo.getPeca(0, 2));
-		Assert.assertNull(jogo.getPeca(1, 0));
-		Assert.assertNull(jogo.getPeca(1, 1));
-		Assert.assertNull(jogo.getPeca(1, 2));
-		Assert.assertNull(jogo.getPeca(2, 0));
-		Assert.assertNull(jogo.getPeca(2, 1));
-		Assert.assertNull(jogo.getPeca(2, 2));
-	}
 
 	@Test
 	public void testJogaUmDeCadaVez() {
@@ -54,25 +41,5 @@ public class JogoTests {
 		Assert.assertNotNull(jogo.getPeca(0,0));
 		Assert.assertFalse(jogo.jogar(0,0));
 	}
-	
-	@Test
-	public void testGanhaQuemAlinhar3Pecas() {
-		jogo.jogar(0,0);
-		Assert.assertFalse(jogo.alguemGanhou());
-		
-		jogo.jogar(1,0);
-		Assert.assertFalse(jogo.alguemGanhou());
-		
-		jogo.jogar(0,1);
-		Assert.assertFalse(jogo.alguemGanhou());
-		
-		jogo.jogar(1,1);
-		Assert.assertFalse(jogo.alguemGanhou());
-		
-		jogo.jogar(0,2);
-		Assert.assertTrue(jogo.alguemGanhou());
-				
-		Assert.assertEquals(j1, jogo.getVencedor());
-	}
-
+ 
 }

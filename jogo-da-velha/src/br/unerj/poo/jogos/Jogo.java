@@ -1,31 +1,29 @@
 package br.unerj.poo.jogos;
 
-public class Jogo {
-	private Jogador[] jogadores;
-	private Tabuleiro tabuleiro;
-	private Dado[] dado;
-	private Jogador vez;  
-	private Jogador vencedor;
+public abstract class Jogo {
+	protected Jogador[] jogadores;
+	protected Tabuleiro tabuleiro;
+	protected Dado[] dado;
+	protected Jogador vez;  
+	protected Jogador vencedor;
 	
 	public Jogo() {
 		tabuleiro = new Tabuleiro();
-		jogadores = new Jogador[2];
-		jogadores[0] = new Jogador("O");
-		jogadores[1] = new Jogador("X");
-		
-		vez = jogadores[0];
 	}
 	
 	public boolean jogar(int x, int y) {
-		// a jogada so pode ser executada se a casa estiver 
-		// vazia
+		// a jogada so pode ser executada se: 
+		// 1) ninguem ganhou o jogo ainda e
+		// 2) se a casa onde se quer jogar estiver vazia
 		
 		boolean jogadaEhValida = 
+			vencedor == null &&
 			tabuleiro.getPeca(x, y) == null; 
 		
 		if (jogadaEhValida) {
 			tabuleiro.setPeca(x, y, new Peca(vez));
 			passaVezParaProximoJogador();  
+			alguemGanhou();
 		}
 		
 		return jogadaEhValida;
@@ -42,71 +40,11 @@ public class Jogo {
 		return vez;
 	}
 
-	public boolean alguemGanhou() {
-		return 
-			fechouLinha(0) || 
-			fechouLinha(1) || 
-			fechouLinha(2) ||
-			fechouColuna(0) || 
-			fechouColuna(1) ||
-			fechouColuna(2) ||
-			fechouDiagonalPrincipal() ||
-			fechouDiagonalSecundaria();
-	}
-	
-	private boolean fechouLinha(int i) {
-		boolean fechou = 
-			tabuleiro.getPeca(i, 0) != null &&
-			tabuleiro.getPeca(i, 0).equals(tabuleiro.getPeca(i, 1)) &&
-			tabuleiro.getPeca(i, 0).equals(tabuleiro.getPeca(i, 2));
-		if (fechou) {
-			vencedor = tabuleiro.getPeca(i, 0).getJogador();
-		}
-		return fechou;
-	}
-
-	private boolean fechouColuna(int i) {
-		boolean fechou = 
-			tabuleiro.getPeca(0, i) != null &&
-			tabuleiro.getPeca(0, i).equals(tabuleiro.getPeca(1, i)) &&
-			tabuleiro.getPeca(0, i).equals(tabuleiro.getPeca(2, i));
-			
-		if (fechou) {
-			vencedor = tabuleiro.getPeca(0, i).getJogador();
-		}
-		return fechou;
-	}
-
-	private boolean fechouDiagonalPrincipal() {
-		boolean fechou = 
-			tabuleiro.getPeca(0, 0) != null &&
-			tabuleiro.getPeca(0, 0) == tabuleiro.getPeca(1, 1) &&
-			tabuleiro.getPeca(0, 0) == tabuleiro.getPeca(2, 2);      
-
-		if (fechou) {
-			vencedor = tabuleiro.getPeca(0, 0).getJogador();
-		}   		
-		return fechou;
-	}
-
-	private boolean fechouDiagonalSecundaria() {
-		boolean fechou = 
-			tabuleiro.getPeca(2, 0) != null  &&
-			tabuleiro.getPeca(2, 0) == tabuleiro.getPeca(1, 1) &&
-			tabuleiro.getPeca(2, 0) == tabuleiro.getPeca(0, 2);
-			
-		if (fechou) {
-			vencedor = tabuleiro.getPeca(2, 0).getJogador();
-		}
-			
-		return fechou;
-	} 
+	public abstract boolean alguemGanhou();
 	
 	public Peca getPeca(int x, int y) {
 		return tabuleiro.getPeca(x, y);
 	}    
 	
-	public Jogador getVencedor() {
-		return vencedor;		
-	}
+	public abstract Jogador getVencedor();
 }
