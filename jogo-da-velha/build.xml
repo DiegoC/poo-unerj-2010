@@ -2,7 +2,7 @@
 <!-- build file for poo-unerj program -->
 <!-- Created by: Andre Castoldi &lt;&gt;  -->
 
-<project name="poo-unerj" default="test" basedir=".">
+<project name="poo-unerj" default="run" basedir=".">
   <property name="src" value="./src"/>
   <property name="test" value="./tests"/>
   <property name="build" value="./build"/>
@@ -48,7 +48,7 @@ does not already exist.
 
 
   <target name="run" depends="build">
-    <java classname="br.unerj.poo.jogos.GameLauncher"  
+    <java classname="GameLauncher"  
         fork="true" 
         dir="${build}" 
         classpath="${build}" 
