@@ -1,6 +1,6 @@
-package br.unerj.poo.jogos;
+package br.unerj.poo.velha;
 
-
+import br.unerj.poo.jogos.*;
 
 public  class JogoDaVelha extends Jogo {
 
