@@ -70,6 +70,11 @@ public  class JogoDaVelha extends Jogo {
 			tabuleiro.getPeca(2, 0) == tabuleiro.getPeca(1, 1) &&
 			tabuleiro.getPeca(2, 0) == tabuleiro.getPeca(0, 2);
 		return fechou;
+	}
+
+	@Override
+	protected Tabuleiro novoTabuleiroParaEsteJogo() {
+		return new TabuleiroVelha();
 	} 
 	
 }

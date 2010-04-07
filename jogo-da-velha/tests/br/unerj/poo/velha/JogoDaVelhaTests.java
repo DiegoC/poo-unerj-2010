@@ -1,11 +1,13 @@
-package br.unerj.poo.jogos;
-
+package br.unerj.poo.velha;
 
 import junit.framework.Assert;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import br.unerj.poo.jogos.Jogador;
+import br.unerj.poo.jogos.Jogo;
 
 public class JogoDaVelhaTests {
 	

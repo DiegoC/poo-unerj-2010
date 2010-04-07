@@ -1,14 +1,14 @@
 package br.unerj.poo.gui;
         
+import java.awt.BorderLayout;
+
 import javax.swing.*;     
-import java.awt.*;
-import java.awt.event.*;
+
 
 public class JogoDaVelha extends Gui {
 	
 	public void montaTela() {
 		JFrame frame = new JFrame();
-		JButton button = new JButton("novo jogo");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JPanel panel1 = new JPanel();

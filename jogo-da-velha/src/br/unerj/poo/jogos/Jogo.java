@@ -8,7 +8,7 @@ public abstract class Jogo {
 	protected Jogador vencedor;
 	
 	public Jogo() {
-		tabuleiro = new Tabuleiro();
+		tabuleiro = novoTabuleiroParaEsteJogo();
 	}
 	
 	public boolean jogar(int x, int y) {
@@ -47,4 +47,5 @@ public abstract class Jogo {
 	}    
 	
 	public abstract Jogador getVencedor();
+	protected abstract Tabuleiro novoTabuleiroParaEsteJogo();
 }
