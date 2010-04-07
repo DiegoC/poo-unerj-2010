@@ -10,12 +10,11 @@ public class ControladorJogos {
 	}   
 	
 	public void jogar(String nome) {
-		if ("Velha".equals(nome)) {
+		if ("velha".equals(nome)) {
 			Gui gui = new br.unerj.poo.gui.JogoDaVelha();
 			Jogo jogo = new br.unerj.poo.velha.JogoDaVelha();
 			gui.setJogo(jogo);
 			gui.iniciar();			
 		}
-		
 	}
 }

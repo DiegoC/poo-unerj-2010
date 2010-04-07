@@ -21,7 +21,8 @@ public class TabuleiroVelhaTests {
 		tabuleiro = null;
 	}                      
 	
-	@Test void testTabuleiroDeveSer3x3() {
+	@Test 
+	public void testTabuleiroDeveSer3x3() {
 		Assert.assertEquals(3, tabuleiro.getLargura());
 		Assert.assertEquals(3, tabuleiro.getAltura());
 	}
